@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post here</title>
+</head>
+<body>
+    <h1>All the posts are HERE</h1>
+   <% posts.forEach( post => { %> 
+    <!-- this doesn't show in the html -->
+       <li><%= post.title %> - <strong><%= post.author %></strong> </li>
+    <% })%>
+</body>
+</html>
