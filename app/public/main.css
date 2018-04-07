@@ -1,0 +1,160 @@
+
+/* Reset css here  */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* End css reset */
+:root{
+    --mainFont: 'Lato', sans-serif;
+    --textColor:#f8f8f9;
+    --mainBgColor:#382f45;
+    --maintitleColor:#fafafa;
+}
+/* main variables  */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    font-family: var(--mainFont);
+    font-size: 20px;
+    text-align: center;
+    color: var(--textColor);
+
+    background-repeat: no-repeat;
+    background: var(--mainBgColor);
+}
+.title{
+    letter-spacing: 8px;
+    line-height: 150%;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 2rem;
+
+    background: var(--maintitleColor);
+    color: var(--mainBgColor);
+
+    width: 100%;
+    padding: 2rem;
+}
+.t_container{
+    border-radius: .5rem;
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+
+    border: 2px solid var(--maintitleColor);
+
+    overflow: hidden;
+    min-width: 70%;
+    max-width: 80%;
+    background: var(--textColor);
+    color: var(--mainBgColor);
+}
+.new_tweet{
+    width: 80%;
+
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--mainBgColor);
+    border-radius: 0.25rem;
+
+    outline: none;
+}
+input[type="text"]::-moz-placeholder{
+    color:var(--maintitleColor);
+
+    background: var(--mainBgColor);
+    font-size: 1rem;
+    font-weight: 300;
+}
+.new_tweet:focus{
+    border-color: var(--textColor);
+
+    border-radius: .5rem;
+}
+.btn_tweet{
+    background: #333333;
+    color: var(--textColor);
+    
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    padding: 1rem;
+    margin-top: 10px;
+
+    border: 1px solid var(--textColor);
+    border-radius: 5px;
+
+    transition: all 0.5s ease-in-out;
+}
+.btn_tweet:hover{
+    color: var(--mainBgColor);
+    background: var(--textColor);
+
+    border-color: var(--mainBgColor);
+}
+.btn_tweet:active{
+    background: var(--maintitleColor);
+}
+.tweet_time{
+    color: var(--mainBgColor);
+
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    font-size: 0.6rem;
+}
+.tweets{
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+}
+.tweet_body{
+    font-size: 1rem;
+    line-height: 150%;
+}
+.tweet_body::first-letter{
+    font-size: 2rem;
+    color: var(--mainBgColor);
+}
