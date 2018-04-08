@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="app.css">
+<div class="container">
+    <ul>
+       <% articles.forEach(article => { %>
+            <li><%= article.title %> <strong><%= article.author %></strong></li>
+        <% }); %>
+    </ul>
+</div>
