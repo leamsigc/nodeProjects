@@ -1,6 +1,7 @@
 const express = require('express'),
     pug = require('pug'),
-    app = express();
+    app = express(),
+    bodyParser = require('body-parser');
 
 /**
  * Camp Ground Arr
@@ -8,7 +9,8 @@ const express = require('express'),
  */
 //view engine
 app.set('view engine', 'pug');
-
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 //home
 app.get('/', (req, res) => {
     res.render('home');
@@ -30,5 +32,10 @@ app.get('/campground', (req, res) => {
 ];
     res.render('campground',{ campGroundArr : campGroundArr});
 });
+app.post('/campground',(req,res) => {
+    //get form data
+    //redirect to 
+    res.redirect('/campground');
+});
 //listen port 
-app.listen(3000, () => console.log('App listening in port:3000'));
+app.listen(8080, () => console.log('App listening in port:3000'));
