@@ -47,6 +47,6 @@ app.post('/campground',(req,res) => {
 //form for the new campground
 app.get('/campground/new',(req,res)=>{
     res.render('form');
-})
+});
 //listen port 
 app.listen(8080, () => console.log('App listening in port:3000'));
