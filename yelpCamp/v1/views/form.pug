@@ -1,7 +1,11 @@
 include partials/header.pug 
-h1  Welcome to the new form for the campground
-form(action="/campground" method='POST')
-    input(type="text", name="name" placeholder='New Campground name..')
-    input(type="text" name='url' placeholder='Image Url...' )
-    input(type="submit", value="Create New Campground")
+.container
+    h1.text-center.my-5  Create a new CampGround
+    form(action="/campground" method='POST')
+        .form-group
+            input(type="text", name="name" placeholder='New Campground name..').form-control.form-control-lg
+        .form-group
+        input(type="text" name='url' placeholder='Image Url...' ).form-control.form-control-lg
+        .form-group
+        input(type="submit", value="Create New Campground").btn.btn-outline-primary.btn-lg.btn-block
 include partials/footer.pug

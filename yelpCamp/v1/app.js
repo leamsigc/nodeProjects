@@ -1,5 +1,6 @@
 const express = require('express'),
     pug = require('pug'),
+    path = require('path'),
     app = express(),
     bodyParser = require('body-parser');
 
@@ -11,23 +12,37 @@ const express = require('express'),
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(express.static(__dirname+'/public'));
 //home
 app.get('/', (req, res) => {
     res.render('home');
 });
 //camp ground 
-const campGroundArr = [{
-    name: 'salmon creak',
-    image: 'https://source.unsplash.com/VowIFDxogG4'
-},
-{
-    name: 'Mountain view',
-    image: 'https://source.unsplash.com/lpjb_UMOyx8'
-},
-{
-    name: 'San juan view',
-    image: 'https://source.unsplash.com/wdX9VkE_CnM'
-}
+const campGroundArr = [
+    {
+        name: 'salmon creak',
+        image: 'https://source.unsplash.com/VowIFDxogG4'
+    },
+    {
+        name: 'Mountain view',
+        image: 'https://source.unsplash.com/lpjb_UMOyx8'
+    },
+    {
+        name: 'San juan view',
+        image: 'https://source.unsplash.com/wdX9VkE_CnM'
+    },
+    {
+        name: 'salmon creak',
+        image: 'https://source.unsplash.com/VowIFDxogG4'
+    },
+    {
+        name: 'Mountain view',
+        image: 'https://source.unsplash.com/lpjb_UMOyx8'
+    },
+    {
+        name: 'San juan view',
+        image: 'https://source.unsplash.com/wdX9VkE_CnM'
+    }
 ];
 app.get('/campground', (req, res) => {
     res.render('campground',{ campGroundArr : campGroundArr});
