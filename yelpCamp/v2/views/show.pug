@@ -1,0 +1,8 @@
+include partials/header.pug
+.container
+    h1.text-center.my-5 #{camp.name}
+    .row
+        .col-md-8.m-auto
+            img(src=camp.img, alt="" style="width:100%; height:400px;")
+    .my-5.text-center   #{camp.desc}
+include partials/footer.pug

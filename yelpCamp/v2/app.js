@@ -15,13 +15,15 @@ mongoose.connect('mongodb://localhost/yelp_camp');
  ***************************/
 let campGroundSchema = new mongoose.Schema({
     name: String,
-    img: String
+    img: String,
+    desc: String
 });
 let Camp = mongoose.model('Campground', campGroundSchema);
 
 // Camp.create({
 //         name: 'San juan view',
-//         img: 'https://source.unsplash.com/wdX9VkE_CnM'
+//         img: 'https://source.unsplash.com/wdX9VkE_CnM',
+//         desc:'Does everybody know that pig named Lorem Ipsum? Shes a disgusting pig, right? Lorem Ipsum is unattractive, both inside and out. I fully understand why it’s former users left it for something else.'
 //     },
 //     (err, camp) => {
 //         if (err) {
@@ -69,7 +71,8 @@ app.post('/campground', (req, res) => {
     //get form data
     let formData = {
         name: req.body.name,
-        img: req.body.url
+        img: req.body.url,
+        desc: req.body.desc
     };
 
     Camp.create(formData,(err, camp)=> {
@@ -85,8 +88,22 @@ app.post('/campground', (req, res) => {
 app.get('/campground/new', (req, res) => {
     res.render('form');
 });
-
-
+/***************************
+ * SHOW route  
+ ****************************/
+app.get('/campground/:id',(req,res) => {
+    let id = req.params.id;
+    // console.log(id);
+    Camp.findById(id,(err, campDetails)=>{
+        if(err){
+            return console.log(err);
+        }
+        console.log(campDetails);
+        res.render('show',{camp: campDetails});
+    });
+    //find the campground with ID 
+    // Camp.find();
+});
 app.listen(3000, () => {
     console.log('APP listen at PORT 3000');
 });
