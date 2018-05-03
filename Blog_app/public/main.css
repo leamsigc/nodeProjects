@@ -123,3 +123,15 @@ textarea {
   background: #f3f3f3;
   color: rgb(1, 114, 108);
 }
+
+.read {
+  padding: 1rem;
+  background: tomato;
+  color: #eee;
+  margin-top: 1rem
+}
+
+.post_body {
+  margin: 0 auto;
+  max-width: 600px;
+}
