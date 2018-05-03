@@ -6,7 +6,9 @@ const express = require('express'),
   path = require('path');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
@@ -27,7 +29,7 @@ const blogSchema = new Mongoose.Schema({
 let blogPost = Mongoose.model('Blog', blogSchema);
 
 /**
- *RESTful routes
+ *REST routes
  */
 app.get('/', (req, res) => {
   res.redirect('/blogs');
@@ -37,14 +39,44 @@ app.get('/blogs', (req, res) => {
     if (err) {
       return console.log(err);
     }
-    res.render('home', { blogPost: posts });
+    res.render('home', {
+      blogPost: posts
+    });
   });
+});
+//CREATE NEW POST
+app.post('/blogs', (req, res) => {
+  console.log(req.body);
+  //create blog 
+  blogPost.create(req.body.blog, (err, newPost) => {
+    if (err) {
+      res.render('newPost');
+      return console.log(err);
+    }
+    res.redirect('/blogs');
+  });
+  // redirect to blogs 
 });
 //NEW ROUTE
 app.get('/blogs/new', (req, res) => {
   res.render('newPost');
 });
-//CREATE NEW POST
+
+//show 
+app.get('/blogs/:id', (req, res) => {
+  let id = req.params.id;
+
+  blogPost.findById(id, (err, post) => {
+    if (err) {
+      res.redirect('/blogs');
+      return false;
+    }
+
+    res.render("show", {
+      post: post
+    });
+  });
+});
 app.listen(3000, () => {
   console.log('App Listening in port : 3000');
 });

@@ -7,21 +7,25 @@
 body {
   text-align: center;
   background: #f3f3f3;
-  font-family: 'helvetica', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'helvetica', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 a {
   text-decoration: none;
   color: #333;
 }
+
 /**
  * Nav bar css
  */
+
 nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background: #555;
 }
+
 .logo {
   flex-basis: 200px;
   font-weight: 900;
@@ -29,31 +33,36 @@ nav {
   font-size: 2rem;
   /* background: yellow; */
 }
+
 .nav_link {
   padding: 1rem;
   color: #f3f3f3;
   transition: background 0.3s ease-in-out;
 }
+
 .nav_link:hover {
   background: #fff;
   color: #333;
 }
+
 .container {
   min-height: 100vh;
 }
+
 h1 {
   padding: 1rem;
   margin-top: 3rem;
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
-
   line-height: 150%;
   color: rgb(25, 29, 46);
 }
+
 ul {
   list-style: none;
 }
+
 li {
   margin: 2rem 0;
   display: flex;
@@ -61,15 +70,56 @@ li {
   align-items: center;
   flex-direction: column;
 }
+
 img {
   max-width: 600px;
   width: 100%;
   min-width: 300px;
+  max-height: 500px;
 }
+
 .title {
   /* padding: 1rem; */
   font-size: 1.5rem;
   line-height: 150%;
   font-weight: 400;
   background: yellow;
+  margin-bottom: 2rem;
+}
+
+.form-container {
+  background: #333;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-container input,
+textarea {
+  min-width: 500px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.form-container input[type="submit"] {
+  background: rgb(1, 114, 108);
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  color: #f3f3f3;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.form-container input[type="submit"]:hover {
+  background: #f3f3f3;
+  color: rgb(1, 114, 108);
 }

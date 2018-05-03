@@ -1,1 +1,13 @@
-form(action="/blogs" method='POST')
+include partials/header.pug
+    //- link(rel="stylesheet", href="../main.css")
+h1.title    NEW BLOG POST
+.form-container
+    form(action="/blogs" method='POST')
+        .input-container
+            input(type="text" name='blog[title]' placeholder='Blog title...' required)  
+        .input-container
+            input(type="text" name='blog[image]' placeholder='Blog image URL...' required) 
+        .input-container
+            textarea(name="blog[body]", cols="30", rows="10" placeholder='Blog Body...' required) 
+        input(type='submit' value='Create new')
+include partials/footer.pug
