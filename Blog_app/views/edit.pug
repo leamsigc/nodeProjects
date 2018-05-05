@@ -1,0 +1,12 @@
+include partials/header.pug
+h1.title    Edit #{post.name}
+.form-container
+    form(action="/blogs/" + post._id+"?_method=PUT" method='POST')
+        .input-container
+            input(type="text" name='blog[name]' value= post.name required)  
+        .input-container
+            input(type="text" name='blog[image]' value= post.image required) 
+        .input-container
+            textarea(name="blog[body]", cols="30", rows="10" required) #{post.body} 
+        input(type='submit' value='Edit Post')
+include partials/footer.pug

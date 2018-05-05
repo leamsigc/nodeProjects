@@ -108,6 +108,7 @@ textarea {
 }
 
 .form-container input[type="submit"] {
+  max-width: 600px;
   background: rgb(1, 114, 108);
   padding: 1.2rem;
   font-size: 1.2rem;
@@ -125,10 +126,13 @@ textarea {
 }
 
 .read {
+  display: inline-block;
   padding: 1rem;
   background: tomato;
   color: #eee;
-  margin-top: 1rem
+  margin: 1rem;
+  max-width: 600px;
+  width: 100%;
 }
 
 .post_body {

@@ -5,4 +5,9 @@ include partials/header.pug
     .post_body
         p   !{post.body}
         strong #{post.created.toDateString()}
+        br
+    a(href="/blogs/"+ post._id +"/edit").read      Edit Post
+    .form-container
+        form( method="POST" action='/blogs/'+ post._id+'?_method=DELETE')
+            input(type="submit" value='Delete Post')
 include partials/footer.pug
