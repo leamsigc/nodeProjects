@@ -90,6 +90,7 @@ img {
 .form-container {
   background: #333;
   max-width: 600px;
+  width:100%;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
@@ -100,7 +101,7 @@ img {
 
 .form-container input,
 textarea {
-  min-width: 500px;
+  max-width: 500px;
   width: 100%;
   margin-bottom: 1rem;
   padding: 1rem;
