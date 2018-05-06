@@ -47,6 +47,7 @@ nav {
 
 .container {
   min-height: 100vh;
+  padding:1rem;
 }
 
 h1 {
@@ -110,6 +111,7 @@ textarea {
 
 .form-container input[type="submit"] {
   max-width: 600px;
+  
   background: rgb(1, 114, 108);
   padding: 1.2rem;
   font-size: 1.2rem;
@@ -131,7 +133,7 @@ textarea {
   padding: 1rem;
   background: tomato;
   color: #eee;
-  margin: 1rem;
+  margin: 1rem 0 ;
   max-width: 600px;
   width: 100%;
 }
