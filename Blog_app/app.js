@@ -7,10 +7,10 @@ const express = require('express'),
   expressSanitizer = require('express-sanitizer');
 
 const app = express();
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'pug');
@@ -50,7 +50,7 @@ app.get('/blogs', (req, res) => {
 //CREATE NEW POST
 app.post('/blogs', (req, res) => {
   console.log(req.body);
-  req.body.blog.body = expressSanitizer(req.body.blog.body);
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   //create blog 
   blogPost.create(req.body.blog, (err, newPost) => {
     if (err) {
@@ -102,6 +102,8 @@ app.get('/blogs/:id/edit', (req, res) => {
  * UPDATE ROUTE 
  */
 app.put('/blogs/:id', (req, res) => {
+  req.body.blog.body = req.sanitize(req.body.blog.body);
+
   // res.send('Hello from update method');
   blogPost.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatePost) => {
     if (err) {
