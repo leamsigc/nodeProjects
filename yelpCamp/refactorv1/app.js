@@ -3,10 +3,13 @@ const express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     path = require('path'),
-    Camp = require('./models/campgrounds');
+    Camp = require('./models/campgrounds'),
+    seedDB = require('./seeds');
 
 const app = express();
 //////////////////////////////////////////////
+seedDB();
+
 mongoose.connect('mongodb://localhost/yelp_camp_2');
 //////////////////////////////////////////////
 
@@ -38,7 +41,7 @@ app.get('/campground', (req, res) => {
 app.post('/campground', (req, res) => {
     let formData = {
         name: req.body.name,
-        img: req.body.img,
+        img: req.body.url,
         desc: req.body.desc
     };
 
@@ -47,7 +50,7 @@ app.post('/campground', (req, res) => {
             console.log(err);
         }
 
-        res.redirect('/campgrounds');
+        res.redirect('/campground');
     });
 });
 
@@ -55,5 +58,22 @@ app.get('/campground/new', (req, res) => {
     res.render('form');
 });
 
+////////////////////////////////////////////
+/*SHOW ROUTER */
+///////////////////////////////////////////
+app.get('/campground/:id', (req, res) => {
+    let id = req.params.id;
+
+    Camp.findById(id, (err, foundCamp) => {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log(foundCamp);
+        res.render('show', {
+            camp: foundCamp
+        });
+    });
+});
 
 app.listen(port, () => console.log(`-App listen in port: ${port}`));
