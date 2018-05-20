@@ -7,11 +7,10 @@ const express = require('express'),
     seedDB = require('./seeds');
 
 const app = express();
-//////////////////////////////////////////////
+
 seedDB();
 
 mongoose.connect('mongodb://localhost/yelp_camp_2');
-//////////////////////////////////////////////
 
 app.set('view engine', 'pug')
     .use(bodyParser.urlencoded({
@@ -58,22 +57,21 @@ app.get('/campground/new', (req, res) => {
     res.render('form');
 });
 
-////////////////////////////////////////////
 /*SHOW ROUTER */
-///////////////////////////////////////////
 app.get('/campground/:id', (req, res) => {
     let id = req.params.id;
 
-    Camp.findById(id, (err, foundCamp) => {
-        if (err) {
-            console.log(err);
-        }
-
-        console.log(foundCamp);
-        res.render('show', {
-            camp: foundCamp
+    Camp.findById(id)
+        .populate('comments')
+        .exec((err, foundCamp) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log(foundCamp);
+            res.render('show', {
+                camp: foundCamp
+            });
         });
-    });
 });
 
 app.listen(port, () => console.log(`-App listen in port: ${port}`));

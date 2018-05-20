@@ -26,25 +26,33 @@ function seedDB() {
             console.log(err);
         }
         console.log('Removed all campgrounds');
-        //Add a few campgrounds
-        data.forEach(ground => {
-            Camp.create(ground, (err, createdCampground) => {
-                if (err) {
-                    console.log(err);
-                }
+        //Remove all comments 
+        Comment.remove({}, (err) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log('Remove all Comments from the campground ...');
 
-                console.log('Created a camp ground ....');
-                //Create a comment 
-                Comment.create({
-                    text: 'This is an amazing place to stay',
-                    author: 'Ismael Garcia'
-                }, (err, commentCreated) => {
+            //Add a few campgrounds
+            data.forEach(ground => {
+                Camp.create(ground, (err, createdCampground) => {
                     if (err) {
                         console.log(err);
                     }
-                    Camp.comments.push(commentCreated);
-                    Camp.save();
-                    console.log('Created a new comment ... ');
+
+                    console.log('Created a camp ground ....');
+                    //Create a comment 
+                    Comment.create({
+                        text: 'This is an amazing place to stay',
+                        author: 'Ismael Garcia'
+                    }, (err, commentCreated) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        createdCampground.comments.push(commentCreated);
+                        createdCampground.save();
+                        console.log('Created a new comment ... ');
+                    });
                 });
             });
         });
