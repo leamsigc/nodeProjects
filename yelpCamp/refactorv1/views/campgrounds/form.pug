@@ -1,4 +1,4 @@
-include partials/header.pug 
+include ../partials/header.pug 
 .container
     h1.text-center.my-5  Create a new CampGround
     form(action="/campground" method='POST')
@@ -10,4 +10,4 @@ include partials/header.pug
         textarea(name="desc", cols="30", rows="10" placeholder="A small description of the Camp ground... ").form-control.form-control-lg
         .form-group
         input(type="submit", value="Create New Campground").btn.btn-outline-primary.btn-lg.btn-block
-include partials/footer.pug
+include ../partials/footer.pug
