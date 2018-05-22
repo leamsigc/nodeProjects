@@ -1,0 +1,102 @@
+:root {
+    --main-color: #fff4e6;
+    --secondary-color: #317256;
+    --light-color: #52bf90;
+    --mid-color: #419873;
+}
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #4DADD4, #9194A3);
+    min-height: 100vh;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    color: var(--main-color);
+    font-weight: 400;
+    font-family: Helvetica, sans-serif;
+}
+
+header {
+    border-top: 10px solid rgb(12, 109, 72);
+    background: var(--light-color);
+    color: var(--main-color);
+    width: 100vw;
+    margin-bottom: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav {
+    flex-basis: 50%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* padding: 1rem; */
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-transform: uppercase;
+    font-weight: 700;
+    flex-basis: 120px;
+    /* background: #4DADD4; */
+    color: var(--main-color);
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 4px solid transparent;
+    transition: border-bottom-color 0.5s ease-in-out;
+}
+
+nav a:hover {
+    border-bottom-color: var(--secondary-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    padding: 0.4rem 1rem;
+}
+
+.hero {
+    min-height: 50vh;
+    text-align: center;
+}
+
+.btn {
+    background: var(--main-color);
+    color: #333;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.btn-hero {
+    border-radius: 5px;
+    border: 1px solid var(--mid-color);
+    transition: background 0.5s ease-in, color 0.3s ease-in-out;
+}
+
+.btn-hero:hover {
+    background: transparent;
+    color: var(--main-color);
+    border-color: var(--secondary-color);
+}
+
+.title {
+    font-size: 2.3rem;
+    background: var(--mid-color);
+    text-transform: uppercase;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
