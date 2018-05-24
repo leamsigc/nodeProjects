@@ -13,3 +13,9 @@ html(lang="en")
                 a.nav_link(href="/users/login")     Login 
                 a.nav_link(href="/users/register")  Register
                 a.nav_link(href="/user/logout")     Logout  
+        if success_msg
+            p.title #{success_msg}
+        else if error_msg
+            p.danger #{error_msg}
+        else if error
+            p.danger #{error}

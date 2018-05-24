@@ -1,3 +1,13 @@
 include ./partials/header.pug
-h1  Welcome to the login page 
+.container
+    h1.title    Account login 
+    form.form(action="/users/login" method='POST')
+        .input_container    
+            label   Username
+                input(type="text" name='username' placeholder='Username')
+        .input_container    
+            label  Password
+                input(type="password", name="password" placeholder='Password')
+        .input_container    
+            input.btn.btn_submit(type="submit", value="login")
 include ./partials/footer.pug

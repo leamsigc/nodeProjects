@@ -62,5 +62,4 @@ app
 
 app.listen(app.get('port'), () => {
     console.log(`Server star listening on port : ${app.get('port')}`);
-
 });
