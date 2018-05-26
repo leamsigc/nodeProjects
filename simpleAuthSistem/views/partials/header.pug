@@ -10,9 +10,12 @@ html(lang="en")
         header
             nav 
                 a.nav_link(href="/")    Home
-                a.nav_link(href="/users/login")     Login 
-                a.nav_link(href="/users/register")  Register
-                a.nav_link(href="/user/logout")     Logout  
+                if !user
+                    a.nav_link(href="/users/login")     Login 
+                    a.nav_link(href="/users/register")  Register
+                else if user
+                    a.nav_link(href="/dashboard")   Dashboard
+                    a.nav_link(href="/users/logout")     Logout  
         if success_msg
             p.title #{success_msg}
         else if error_msg

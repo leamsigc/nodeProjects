@@ -35,30 +35,50 @@ router.post('/register', (req, res) => {
         password2: req.body.password2
     };
     let errors = req.validationErrors();
-    console.log(userData);
-    console.log(errors);
 
     if (errors) {
         res.render('register', {
             errors: errors
         });
     } else {
-        let newUser = new User({
-            name: userData.name,
-            email: userData.email,
-            username: userData.username,
-            password: userData.password
-        });
 
-        User.createUser(newUser, (err, userCreated) => {
-            if (err) {
-                throw err;
+        User.findOne({
+            username: {
+                "$regex": `^${userData.username}\b`,
+                "$options": "i"
             }
+        }, (err, user) => {
+            User.findOne({
+                email: {
+                    "$regex": "^" + userData.email + "\\b",
+                    "$options": "i"
+                }
+            }, (err, mail) => {
+                if (user || mail) {
+                    res.render('register', {
+                        user: user,
+                        mail: mail
+                    });
+                } else {
+                    let newUser = new User({
+                        name: userData.name,
+                        email: userData.email,
+                        username: userData.username,
+                        password: userData.password
+                    });
 
-            console.log(userCreated);
-            req.flash('success_msg', 'You are register and can now login');
+                    User.createUser(newUser, (err, userCreated) => {
+                        if (err) {
+                            throw err;
+                        }
+
+                        console.log(userCreated);
+                    });
+                    req.flash('success_msg', 'You are register and can now login');
+                    res.redirect('/users/login');
+                }
+            });
         });
-        res.redirect('/users/login');
     }
 
 });
@@ -79,7 +99,7 @@ passport.use(new localStrategy((username, password, done) => {
                 throw err;
             }
             if (isMatch) {
-                return done(null, user)
+                return done(null, user);
             } else {
                 return done(null, false, {
                     message: 'Invalid password'
@@ -90,7 +110,7 @@ passport.use(new localStrategy((username, password, done) => {
 }));
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -99,10 +119,18 @@ passport.deserializeUser((id, done) => {
     });
 });
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true
 }), (req, res) => {
-    res.redirect('/');
+    res.redirect('/dashboard');
+});
+
+router.get('/logout', (req, res) => {
+    req.logout();
+
+    req.flash('success_msg', 'You are logged out');
+
+    res.redirect('/users/login');
 });
 module.exports = router;
