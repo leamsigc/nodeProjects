@@ -2,7 +2,7 @@ const express = require('express'),
     router = express.Router();
 
 //GET HOMEPAGE
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
 });
 
@@ -13,10 +13,10 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return next()
+        return next();
     } else {
         req.flash('error_msg', 'you are not logged in');
-        res.redirect('/users/login')
+        res.redirect('/users/login');
     }
 
 }
