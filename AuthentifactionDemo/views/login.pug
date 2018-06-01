@@ -1,0 +1,10 @@
+include partials/header.pug
+.container
+    h2 Register to the secret page
+    form(action="/register" method='POST')
+        p Username:
+        input(type="text", name="username" placeholder='Username ...')
+        p Password:
+        input(type="password", name="password" placeholder='password')
+        input(type="submit", value="login")
+include partials/footer.pug
