@@ -1,0 +1,15 @@
+include ../partials/header.pug
+.container
+    h1.text-center.my-5  Welcome to the Top Camp Grounds
+    .container.text-center
+        a(href="/campground/new").btn.btn-secondary.my-5  Add New Campground
+    div.row
+        each camp in campGroundArr
+            .col-md-4.mt-4
+                .card
+                    img(src= camp.img, alt="" style="width:100%; height:200px;").card-img-top
+                    .card-body
+                        h5.card-title #{camp.name}
+                        a.btn.btn-primary(href='/campground/'+camp._id)   More Information
+       
+include ../partials/footer.pug
