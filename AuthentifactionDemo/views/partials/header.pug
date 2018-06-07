@@ -5,9 +5,18 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Authentication Demo
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css")
     body
-        nav
-            a(href="/") Home 
-            a(href="/login") Login 
-            a(href="") Sign in  
-            a(href="") Sing Out 
+        nav.navbar
+            .container
+                .navbar-brand
+                    a(href="/").navbar-item     AUTHENTICATION APP
+                    a(data-target='navMenu').navbar-burger
+                        span
+                        span
+                        span
+                .navbar-menu.navbar-end
+                    a.navbar-item(href="/") Home 
+                    a.navbar-item(href="/login") Login 
+                    a.navbar-item(href="/register") Sign in  
+                    a.navbar-item(href="") Sing Out 
