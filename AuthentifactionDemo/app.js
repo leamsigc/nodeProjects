@@ -19,7 +19,7 @@ app
     .use(bodyParser.urlencoded({
         extended: true
     }))
-    .use(express.static(__dirname+ '/public'))
+    .use(express.static(__dirname + '/public'))
     .use(expressSession({
         secret: 'secret',
         resave: false,
@@ -28,6 +28,7 @@ app
     .use(passport.initialize())
     .use(passport.session());
 
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -40,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/secret', (req, res) => {
+app.get('/secret', isLoggedIn, (req, res) => {
     res.render('secret');
 });
 
@@ -56,17 +57,36 @@ app.post('/register', (req, res) => {
         password: req.body.password
     };
     console.log(userData);
-    User.register(new User({username:userData.userName}),userData.password,(err, createdUser)=>{
-        if(err){
+    User.register(new User({
+        username: userData.userName
+    }), userData.password, (err, createdUser) => {
+        if (err) {
             console.log(err);
             return res.render('register');
         }
         console.log(createdUser);
-        passport.authenticate('local')(req,res,() => {
-          res.redirect('/secret');  
+        passport.authenticate('local')(req, res, () => {
+            res.redirect('/secret');
         });
     });
 });
+//middleware 
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/secret',
+    failureRedirect: '/login'
+}), (req, res) => {});
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('login');
+}
 app.listen(3000, () => {
     console.log('App listening on port 3000!');
 });
