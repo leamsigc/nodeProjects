@@ -1,0 +1,15 @@
+include ./partials/header.pug
+.container
+    .row
+        .col-8.my-5
+            form(action="/register" method='POST')
+                .form-group
+                    label(for="username") Username:
+                    input#username(type="text", name="username" placeholder='Username').form-control
+                    small.form-text.text-muted We'll never share your email with anyone else.
+                .form-group
+                    label(for="password") Username:
+                    input#username(type="password", name="password" placeholder='Password').form-control
+                button(type="submit").btn.btn-primary Submit
+
+include ./partials/footer.pug

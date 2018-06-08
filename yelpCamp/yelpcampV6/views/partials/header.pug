@@ -13,10 +13,20 @@ html(lang="en")
                 button.navbar-toggler
                     span.navbar-toggler-icon
                 div.collapse.navbar-collapse
-                    ul.navbar-nav.ml-auto
+                    ul.navbar-nav.ml-auto.p-3
                         li.nav-item
                             a(href="/").nav-link    Home
                         li.nav-item
                             a(href="/campground").nav-link    Camp Grounds
                         li.nav-item
                             a(href="/campground/new").nav-link    New CampGround
+                        if !user
+                            li.nav-item.mx-2
+                                a.btn.btn-outline-secondary(href="/register").nav-link    Register
+                            li.nav-item.mx-2
+                                a.btn.btn-outline-primary(href="/login").nav-link    Login
+                        if user
+                            li.nav-item.text-center
+                                a.navbar-brand  Signed in as : #{user.username}
+                            li.nav-item.mx-2
+                                a.btn.btn-outline-primary(href="/logout").nav-link    Logout
