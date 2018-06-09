@@ -7,7 +7,8 @@ const express = require('express'),
     expressSession = require('express-session'),
     path = require('path'),
     bodyParser = require('body-parser'),
-    passportLocalMongoose = require('passport-local-mongoose');
+    passportLocalMongoose = require('passport-local-mongoose'),
+    methodOverRide = require('method-override');
 
 const Camp = require('./models/campgrounds'),
     Comments = require('./models/comments'),
@@ -30,6 +31,7 @@ app
     .set('port', (process.env.PORT || 3000));
 //app use 
 app
+    .use(methodOverRide('_method'))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({
         extended: true
