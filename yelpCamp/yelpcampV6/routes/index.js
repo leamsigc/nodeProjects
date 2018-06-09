@@ -1,11 +1,8 @@
 const express = require('express'),
     router = express.Router(),
+    passport = require('passport'),
     User = require('../models/user');
 
-//home page 
-// router.get('/', (req, res) => {
-//     res.render('campgrounds/index');
-// });
 //use routes 
 router.get('/', (req, res) => {
     res.render('campgrounds/index');

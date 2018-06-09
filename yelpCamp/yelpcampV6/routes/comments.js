@@ -1,17 +1,19 @@
 const express = require('express'),
-    router = express.Router(),
+    router = express.Router({
+        mergeParams: true
+    }),
     Camp = require('../models/campgrounds'),
     Comments = require('../models/comments');
 
 
-router.get('/campground/:id/comments/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     let id = req.params.id;
     res.render('comments/new', {
         id: id
     });
 });
 
-router.post('/campground/:id/comments', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
     let commentData = {
         author: req.body.author,
         text: req.body.text
@@ -35,5 +37,12 @@ router.post('/campground/:id/comments', isLoggedIn, (req, res) => {
         });
     });
 });
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
 
 module.exports = router;

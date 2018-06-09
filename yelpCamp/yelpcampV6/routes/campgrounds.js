@@ -1,7 +1,8 @@
  const express = require('express'),
-     router = express.Router();
+     router = express.Router(),
+     Camp = require('../models/campgrounds');
 
- router.get('/campground', (req, res) => {
+ router.get('/', (req, res) => {
      console.log(req.use);
      //get all campgrounds from db 
      Camp.find({}, (err, allCampgrounds) => {
@@ -15,7 +16,7 @@
      });
  });
 
- router.post('/campground', (req, res) => {
+ router.post('/', (req, res) => {
      let formData = {
          name: req.body.name,
          img: req.body.url,
@@ -31,12 +32,12 @@
      });
  });
 
- router.get('/campground/new', (req, res) => {
+ router.get('/new', (req, res) => {
      res.render('campgrounds/form');
  });
 
  //show the details for each campground
- router.get('/campground/:id', (req, res) => {
+ router.get('/:id', (req, res) => {
      let id = req.params.id;
      //find the campground 
      Camp.findById(id)
