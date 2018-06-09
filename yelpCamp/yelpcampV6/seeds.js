@@ -22,40 +22,40 @@ const data = [{
 function seedDB() {
     //Remove all the campgrounds
     Camp.remove({}, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        console.log('Removed all campgrounds');
-        //Remove all comments 
-        Comment.remove({}, (err) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log('Remove all Comments from the campground ...');
+        // if (err) {
+        //     console.log(err);
+        // }
+        // console.log('Removed all campgrounds');
+        // //Remove all comments 
+        // Comment.remove({}, (err) => {
+        //     if (err) {
+        //         console.log(err);
+        //     }
+        //     console.log('Remove all Comments from the campground ...');
 
-            //Add a few campgrounds
-            data.forEach(ground => {
-                Camp.create(ground, (err, createdCampground) => {
-                    if (err) {
-                        console.log(err);
-                    }
+        //     //Add a few campgrounds
+        //     data.forEach(ground => {
+        //         Camp.create(ground, (err, createdCampground) => {
+        //             if (err) {
+        //                 console.log(err);
+        //             }
 
-                    console.log('Created a camp ground ....');
-                    //Create a comment 
-                    Comment.create({
-                        text: 'This is an amazing place to stay',
-                        author: 'Ismael Garcia'
-                    }, (err, commentCreated) => {
-                        if (err) {
-                            console.log(err);
-                        }
-                        createdCampground.comments.push(commentCreated);
-                        createdCampground.save();
-                        console.log('Created a new comment ... ');
-                    });
-                });
-            });
-        });
+        //             console.log('Created a camp ground ....');
+        //             //Create a comment 
+        //             Comment.create({
+        //                 text: 'This is an amazing place to stay',
+        //                 author: 'Ismael Garcia'
+        //             }, (err, commentCreated) => {
+        //                 if (err) {
+        //                     console.log(err);
+        //                 }
+        //                 createdCampground.comments.push(commentCreated);
+        //                 createdCampground.save();
+        //                 console.log('Created a new comment ... ');
+        //             });
+        //         });
+        //     });
+        // });
     });
 
 }

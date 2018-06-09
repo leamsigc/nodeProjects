@@ -17,6 +17,8 @@ include ../partials/header.pug
                     .col-md-6.text-right 
                         p.font-weight-bold Price: $99.00
                     figcaption.figure-caption.my-5.text-center   !{camp.desc}
+                    small.text-center Posted by: 
+                        strong #{camp.author.username}
             .container
                 hr
                 hr
@@ -34,6 +36,6 @@ include ../partials/header.pug
                             .card.my-2
                                 .card-body
                                     p.blockquote.mb-0   #{comment.text}
-                                    footer.blockquote-footer  #{comment.author}
+                                    footer.blockquote-footer  #{comment.author.username}
                                         p.text-right 10days ago
 include ../partials/footer.pug

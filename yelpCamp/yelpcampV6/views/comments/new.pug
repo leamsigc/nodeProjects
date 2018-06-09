@@ -2,8 +2,8 @@ include ../partials/header.pug
 .container
     h1.text-center.my-5  Create a comment for yelp Camp.
     form(action="/campground/"+id+"/comments" method='POST')
-        .form-group
-        input(type="text" value=user.username name='author' placeholder='Comment author ...' ).form-control.form-control-lg
+        //- .form-group
+        //- input(type="text" value=user.username name='author' placeholder='Comment author ...' ).form-control.form-control-lg
         .form-group
         textarea(name="text", cols="30", rows="10" placeholder="Place your comments here ...").form-control.form-control-lg
         .form-group
