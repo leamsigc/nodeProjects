@@ -70,6 +70,16 @@
      });
  });
  //UPDATE CAMPGROUND ROUTE
+ router.put('/:id/edit', (req, res) => {
+     console.log(req.body.camp);
+     Camp.findByIdAndUpdate(req.params.id, req.body.camp, (err, updatedCamp) => {
+         if (err) {
+             res.redirect('/campground');
+             return console.log(err);
+         }
+         res.redirect('/campground/' + req.params.id);
+     });
+ });
 
  function isLoggedIn(req, res, next) {
      if (req.isAuthenticated()) {

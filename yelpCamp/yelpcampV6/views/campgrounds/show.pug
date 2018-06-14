@@ -17,6 +17,8 @@ include ../partials/header.pug
                     .col-md-6.text-right 
                         p.font-weight-bold Price: $99.00
                     figcaption.figure-caption.my-5.text-center   !{camp.desc}
+                    div.text-center.my-5.mx-5
+                        a.btn.btn-outline-info(href='/campground/'+camp._id+'/edit') Edit Campground
                     small.text-center Posted by: 
                         strong #{camp.author.username}
             .container

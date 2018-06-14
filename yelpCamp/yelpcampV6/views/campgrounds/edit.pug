@@ -1,13 +1,13 @@
 include ../partials/header.pug 
 .container
     h1.text-center.my-5  Edit this CampGround
-    form(action="/campground" method='POST')
+    form(action='/campground/'+ foundCampground._id+'/edit'+"?_method=PUT" method='POST')
         .form-group
-            input(type="text", name="name" value =foundCampground.name ).form-control.form-control-lg
+            input(type="text", name="camp[name]" value =foundCampground.name ).form-control.form-control-lg
         .form-group
-        input(type="text" name='url' value =foundCampground.img ).form-control.form-control-lg
+        input(type="text" name='camp[img]' value =foundCampground.img ).form-control.form-control-lg
         .form-group
-        textarea(name="desc", cols="30", rows="10").form-control.form-control-lg #{foundCampground.desc}
+        textarea(name="camp[desc]", cols="30", rows="10").form-control.form-control-lg #{foundCampground.desc}
         .form-group
         input(type="submit", value="Update Campground").btn.btn-outline-primary.btn-lg.btn-block
 include ../partials/footer.pug
