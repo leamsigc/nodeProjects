@@ -1,7 +1,7 @@
 include ../partials/header.pug 
 .container
     h1.text-center.my-5  Edit this CampGround
-    form(action='/campground/'+ foundCampground._id+'/edit'+"?_method=PUT" method='POST')
+    form(action='/campground/'+ foundCampground._id+"?_method=PUT" method='POST')
         .form-group
             input(type="text", name="camp[name]" value =foundCampground.name ).form-control.form-control-lg
         .form-group
