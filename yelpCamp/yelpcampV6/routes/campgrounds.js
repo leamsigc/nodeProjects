@@ -81,6 +81,16 @@
      });
  });
 
+
+ //REMOVE CAMPGROUND
+ router.delete('/:id', (req,res) => {
+     Camp.findByIdAndRemove(req.params.id,(err) => {
+         if (err) {
+             res.redirect('/campground/'+req.params.id);
+         }
+         res.redirect('/campground');
+     });
+ });
  function isLoggedIn(req, res, next) {
      if (req.isAuthenticated()) {
          return next();
