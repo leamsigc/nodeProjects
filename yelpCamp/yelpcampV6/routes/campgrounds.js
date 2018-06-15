@@ -1,4 +1,4 @@
- const express = require('express'),
+const express = require('express'),
      router = express.Router(),
      Camp = require('../models/campgrounds');
 
@@ -57,21 +57,17 @@
  });
 
  //EDIT CAMPGROUND ROUTE 
- router.get('/:id/edit', (req, res) => {
-     Camp.findById(req.params.id, (err, foundCampground) => {
-         if (err) {
-             console.log(err);
-             res.redirect('/campground');
-         }
-
-         res.render('campgrounds/edit', {
-             foundCampground: foundCampground
-         });
-     });
+ router.get('/:id/edit',checkCampgroundOwnership, (req, res) => {
+     //check if login 
+         Camp.findById(req.params.id, (err, foundCampground) => {
+                res.render('campgrounds/edit', {
+                    foundCampground: foundCampground
+                });
+        });
  });
  //UPDATE CAMPGROUND ROUTE
- router.put('/:id', (req, res) => {
-     console.log(req.body.camp);
+ router.put('/:id',checkCampgroundOwnership, (req, res) => {
+    //  console.log(req.body.camp);
      Camp.findByIdAndUpdate(req.params.id, req.body.camp, (err, updatedCamp) => {
          if (err) {
              res.redirect('/campground');
@@ -83,7 +79,7 @@
 
 
  //REMOVE CAMPGROUND
- router.delete('/:id', (req,res) => {
+ router.delete('/:id',checkCampgroundOwnership, (req,res) => {
      Camp.findByIdAndRemove(req.params.id,(err) => {
          if (err) {
              res.redirect('/campground/'+req.params.id);
@@ -91,11 +87,30 @@
          res.redirect('/campground');
      });
  });
- function isLoggedIn(req, res, next) {
+
+function isLoggedIn(req, res, next) {
      if (req.isAuthenticated()) {
          return next();
      }
      res.redirect('/login');
  }
 
+function checkCampgroundOwnership(req,res,next) {
+    if (req.isAuthenticated()) {
+        Camp.findById(req.params.id, (err, foundCampground) => {
+            if (err) {
+                console.log(err);
+                res.redirect('back');
+            }
+             if(foundCampground.author.id.equals(req.user._id)){
+                next();
+            }else{
+                res.redirect('back');
+            }
+
+        });
+    }else{
+        res.redirect('back');
+    }
+}
  module.exports = router;
