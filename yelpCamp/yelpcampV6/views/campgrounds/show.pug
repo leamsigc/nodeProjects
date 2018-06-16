@@ -17,10 +17,11 @@ include ../partials/header.pug
                     .col-md-6.text-right 
                         p.font-weight-bold Price: $99.00
                     figcaption.figure-caption.my-5.text-center   !{camp.desc}
-                    div.text-center.my-5.mx-5
-                        a.btn.btn-outline-info.mx-2(href='/campground/'+camp._id+'/edit') Edit Campground
-                        form.d-inline(action='/campground/'+ camp._id+"?_method=DELETE" method='POST')
-                            button.btn.btn-outline-danger Delete Campground
+                    if user && camp.author.id.equals(user._id)
+                        div.text-center.my-5.mx-5
+                            a.btn.btn-outline-info.mx-2(href='/campground/'+camp._id+'/edit') Edit Campground
+                            form.d-inline(action='/campground/'+ camp._id+"?_method=DELETE" method='POST')
+                                button.btn.btn-outline-danger Delete Campground
 
                     .text-center 
                         div Posted by: 
@@ -44,4 +45,8 @@ include ../partials/header.pug
                                     p.blockquote.mb-0   #{comment.text}
                                     footer.blockquote-footer  #{comment.author.username}
                                         p.text-right 10days ago
+                                div.text-center.my-5.mx-5
+                                    a.btn.btn-outline-info.mx-2(href='/campground/'+camp._id+'/comments/'+comment._id+'/edit') Edit Comment
+                                    form.d-inline(action='/campground/'+ camp._id+"/comments?_method=DELETE" method='POST')
+                                        button.btn.btn-outline-danger Delete Comment
 include ../partials/footer.pug

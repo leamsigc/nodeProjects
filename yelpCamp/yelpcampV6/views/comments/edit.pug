@@ -1,0 +1,11 @@
+include ../partials/header.pug 
+.container
+    h1.text-center.my-5  Update a #{comment.author.username} comment.
+    form(action="/campground/"+id+"/comments/"+comment._id +'?_method=PUT' method='POST')
+        //- .form-group
+        //- input(type="text" value=user.username name='author' placeholder='Comment author ...' ).form-control.form-control-lg
+        .form-group
+        textarea(name="text", cols="30", rows="10").form-control.form-control-lg #{comment.text}
+        .form-group
+        input(type="submit", value="Update the Comment").btn.btn-outline-primary.btn-lg.btn-block
+include ../partials/footer.pug
