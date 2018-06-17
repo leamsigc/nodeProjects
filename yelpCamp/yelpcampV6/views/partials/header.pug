@@ -30,3 +30,9 @@ html(lang="en")
                                 a.navbar-brand  Signed in as : #{user.username}
                             li.nav-item.mx-2
                                 a.btn.btn-outline-primary(href="/logout").nav-link    Logout
+    if danger && danger.length > 0 || success && success.length > 0
+        .container
+            if danger.length > 0
+                .alert.alert-danger #{danger}
+            if success.length > 0
+                .alert.alert-success #{success}

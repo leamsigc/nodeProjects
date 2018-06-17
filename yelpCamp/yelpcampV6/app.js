@@ -4,6 +4,7 @@ const express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     pug = require('pug'),
+    flash = require('connect-flash'),
     expressSession = require('express-session'),
     path = require('path'),
     bodyParser = require('body-parser'),
@@ -36,6 +37,7 @@ app
     .use(bodyParser.urlencoded({
         extended: true
     }))
+    .use(flash())
     .use(express.static(__dirname + '/public'))
     .use(expressSession({
         secret: 'sanjuanquiahije',
@@ -46,6 +48,8 @@ app
     .use(passport.session());
 app.use((req, res, next) => {
     res.locals.user = req.user;
+    res.locals.danger = req.flash('danger');
+    res.locals.success = req.flash('success');
     next();
 });
 //passport Use

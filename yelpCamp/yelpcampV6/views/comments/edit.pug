@@ -5,7 +5,7 @@ include ../partials/header.pug
         //- .form-group
         //- input(type="text" value=user.username name='author' placeholder='Comment author ...' ).form-control.form-control-lg
         .form-group
-        textarea(name="text", cols="30", rows="10").form-control.form-control-lg #{comment.text}
+        textarea(name="comment[text]", cols="30", rows="10").form-control.form-control-lg #{comment.text}
         .form-group
         input(type="submit", value="Update the Comment").btn.btn-outline-primary.btn-lg.btn-block
 include ../partials/footer.pug
