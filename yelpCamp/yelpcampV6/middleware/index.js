@@ -9,16 +9,19 @@ middlewareObj.checkCampgroundOwnership = function (req, res, next) {
         Camp.findById(req.params.id, (err, foundCampground) => {
             if (err) {
                 console.log(err);
+                req.flash('danger','Campground not found');
                 res.redirect('back');
             }
             if (foundCampground.author.id.equals(req.user._id)) {
                 next();
             } else {
+                req.flash('danger','You dont have permission to do that');
                 res.redirect('back');
             }
 
         });
     } else {
+        req.flash('danger','You need to be logged in to do that.');
         res.redirect('back');
     }
 };
@@ -37,6 +40,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
             }
         });
     } else {
+        req.flash('danger','You need to be logged in to do that.');
         req.redirect('/login');
     }
 
@@ -46,7 +50,7 @@ middlewareObj.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    req.flash('danger','Please login Fist');
+    req.flash('danger','You need to be logged in to do that ');
     res.redirect('/login');
 }
 module.exports = middlewareObj;

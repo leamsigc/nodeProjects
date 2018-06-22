@@ -61,6 +61,9 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', middleware.checkCampgroundOwnership, (req, res) => {
     //check if login 
     Camp.findById(req.params.id, (err, foundCampground) => {
+        if(err){
+            req.flash('danger','Campground not found');
+           }
         res.render('campgrounds/edit', {
             foundCampground: foundCampground
         });
